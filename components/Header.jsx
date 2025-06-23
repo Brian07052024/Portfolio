@@ -12,7 +12,7 @@ function Header() {
 
                     <div className="flex flex-col">
                         <p className="text-white">Brian Orlando Ramirez Nuñez</p>
-                        <p className="text-white font-bold"><span className="bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">FullStack</span> Developer</p>
+                        <p className="text-white font-bold text-sm"><span className="bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">FullStack</span> Developer</p>
                     </div>
 
                 </div>
