@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "tailwindcss-animated";
+
 
 @font-face{
     font-family: "Lexend";
@@ -9,18 +11,30 @@
 }
 
 @theme{
-    --color-negro: #101010;
-    --color-enfasis: #B249F8;
+  --color-negro: #101010;
+  --color-enfasis: #B249F8;
 
-    --color-titleTop: #FF1CF7;
-    --color-titleBottom: #B249F8;
+  --color-titleTop: #FF1CF7;
+  --color-titleBottom: #B249F8;
 
-    --color-nonEnfasis: #858585;
+  --color-nonEnfasis: #858585;
 
-    --shadow-avatar: 0 0 10px 2px;
-    --drop-shadow-icons: 0 0 100px 0px;
+  --shadow-avatar: 0 0 10px 2px;
+  --drop-shadow-icons: 0 0 100px 0px;
 
-    --font-sans: "Lexend", system-ui, sans-serif;
+  --font-sans: "Lexend", system-ui, sans-serif;
+
+  --animate-fade-out: sacar 0.6s ease forwards;
+
+  @keyframes sacar{
+    0%{
+      opacity: 1;
+    }
+    100%{
+      opacity: 0;
+    }
+  }
+
 
 }
 
