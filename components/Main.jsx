@@ -1,5 +1,6 @@
 import TitleSection from "./TitleSection";
 import Btn from "./Btn";
+import ExperienceCard from "./ExperienceCard";
 
 function Main() {
     return (
@@ -28,6 +29,43 @@ function Main() {
                         <img src="/img/aboutmeimg.png" alt="ME" className="hover:scale-110 transition cursor-pointer" />
                     </div>
                 </div>
+            </div>
+
+            <div className="flex flex-col gap-5 mx-3 mt-20" id="experience">
+
+                <TitleSection
+                    spanText={"Experience"}
+                    h2Text={"My Experience"}
+                />
+
+                <div className="flex flex-col gap-5">
+                    <ExperienceCard
+                        icon="/img/freelancer.svg"
+                        title="Freelancer"
+                        date="January 2024 - Present"
+                        description="Creating landing pages for my clients tailored to their needs, with the necessary features and a good design."
+                    />
+                    <ExperienceCard
+                        icon="/img/figma.svg"
+                        title="UX/UI Design"
+                        date="January 2024 - June 2024"
+                        description="Certified in UX/UI design by the Faculty of Mechanical and Electrical Engineering."
+                    />
+                    <ExperienceCard
+                        icon="/img/pwa.png"
+                        title="Progressive Web Apps"
+                        date="January 2024 - June 2024"
+                        description="Experience creating responsive and modern websites. Creating web experiences that work even offline and can be installed as mobile apps."
+                    />
+                    <ExperienceCard
+                        icon="/img/mern.png"
+                        title="MERN Developer"
+                        date="May 2025 - Today"
+                        description="Handling the MERN stack to build full-stack web applications."
+                    />
+
+                </div>
+
             </div>
         </div>
 

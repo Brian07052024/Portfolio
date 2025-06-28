@@ -39,8 +39,8 @@ function Header() {
         );
     }
 
-    function handleAvatarCick() {
-        isShowing ? setIsShowing(!isShowing) : setIsShowing(true);
+    function handleAvatarClick() {
+        setIsShowing(prev => !prev);
     }
 
     function renderAvatar() {
@@ -53,7 +53,7 @@ function Header() {
                         <p className="text-white bold text-2xl">Systems administration engineer</p>
                     </div>
 
-                    <div className="flex flex-col gap-2 items-center cursor-pointer" onClick={handleAvatarCick}>
+                    <div className="flex flex-col gap-2 items-center cursor-pointer" onClick={handleAvatarClick}>
                         <img src="/img/x-circle.svg" alt="CLOSE" className="bg-red-300 rounded-full"/>
                         <p className="text-white bold uppercase text-xl">Close</p>
                     </div>
@@ -75,7 +75,7 @@ function Header() {
                         <img src="/img/Menu.svg" alt="Menu" />
                     </div>
 
-                    <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarCick} />
+                    <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
 
                     <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
 
