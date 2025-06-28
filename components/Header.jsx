@@ -4,6 +4,7 @@ import Link from "./Link";
 function Header() {
     const [showLinks, setShowLinks] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+    const [isShowing, setIsShowing] = useState(false);
 
     function handleMenuClick() {
         if (showLinks) {
@@ -11,7 +12,7 @@ function Header() {
             setTimeout(() => {
                 setShowLinks(false);
                 setIsClosing(false);
-            }, 600); // Duración de la animación fade-out (ajusta si tu animación es diferente)
+            }, 600); // Duración de la animación fade-out
         } else {
             setShowLinks(true);
         }
@@ -38,6 +39,31 @@ function Header() {
         );
     }
 
+    function handleAvatarCick() {
+        isShowing ? setIsShowing(!isShowing) : setIsShowing(true);
+    }
+
+    function renderAvatar() {
+        return (
+            <div>
+                <div className={isShowing ? "bg-black/25 backdrop-blur-md fixed inset-0 z-[999] flex items-center justify-center flex-col gap-5 animate-fade" : "hidden"}>
+                    <div className="flex flex-col gap-2 items-center mx-3 text-center">
+                        <img src="/img/me.png" alt="Avatar" className="rounded-full" />
+                        <p className="text-white bold text-2xl">Brian Orlando Ramirez Nuñez</p>
+                        <p className="text-white bold text-2xl">Systems administration engineer</p>
+                    </div>
+
+                    <div className="flex flex-col gap-2 items-center cursor-pointer" onClick={handleAvatarCick}>
+                        <img src="/img/x-circle.svg" alt="CLOSE" className="bg-red-300 rounded-full"/>
+                        <p className="text-white bold uppercase text-xl">Close</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+        ) 
+    }
+
     return (
 
         <header id="header" className="bg-transparent flex justify-center py-3 items-center absolute top-0 right-0 left-0 z-50">
@@ -49,7 +75,7 @@ function Header() {
                         <img src="/img/Menu.svg" alt="Menu" />
                     </div>
 
-                    <img src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25" />
+                    <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarCick} />
 
                     <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
 
@@ -65,6 +91,7 @@ function Header() {
 
 
                 {renderMobileMenu()}
+                {renderAvatar()}
 
                 {/* Desktop nav */}
                 <div className="hidden sm:block">
