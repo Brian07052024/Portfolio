@@ -1,8 +1,8 @@
-function ExperienceCard({icon, title, date, description}) {
+function ExperienceCard({icon, title, date, description, gridSpan}) {
     return ( 
 
         
-        <div className="text-white exp-cards p-5 flex flex-col gap-3">
+        <div className={`text-white exp-cards p-5 flex flex-col gap-3 ${gridSpan}`}>
             
             <div className="flex gap-2 items-center">
                 <img src={icon} alt="Icon" className="size-8" />

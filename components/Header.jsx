@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Link from "./Link";
 
+
 function Header() {
     const [showLinks, setShowLinks] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [isShowing, setIsShowing] = useState(false);
+    const [isAvatarClosing, setIsAvatarClosing] = useState(false);
 
     function handleMenuClick() {
         if (showLinks) {
@@ -39,14 +41,32 @@ function Header() {
         );
     }
 
+
     function handleAvatarClick() {
-        setIsShowing(prev => !prev);
+        if (isShowing) {
+            setIsAvatarClosing(true);
+            setTimeout(() => {
+                setIsShowing(false);
+                setIsAvatarClosing(false);
+            }, 600); // Duración de la animación fade-out
+        } else {
+            setIsShowing(true);
+        }
     }
 
     function renderAvatar() {
+        if (!isShowing && !isAvatarClosing) return null;
         return (
             <div>
-                <div className={isShowing ? "bg-black/25 backdrop-blur-md fixed inset-0 z-[999] flex items-center justify-center flex-col gap-5 animate-fade" : "hidden"}>
+                <div
+                    className={
+                        (isShowing && !isAvatarClosing
+                            ? "bg-black/25 backdrop-blur-md fixed inset-0 z-[999] flex items-center justify-center flex-col gap-5 animate-fade"
+                            : isAvatarClosing
+                                ? "bg-black/25 backdrop-blur-md fixed inset-0 z-[999] flex items-center justify-center flex-col gap-5 animate-fade-out"
+                                : ""
+                    )
+                }>
                     <div className="flex flex-col gap-2 items-center mx-3 text-center">
                         <img src="/img/me.png" alt="Avatar" className="rounded-full" />
                         <p className="text-white bold text-2xl">Brian Orlando Ramirez Nuñez</p>
@@ -58,10 +78,8 @@ function Header() {
                         <p className="text-white bold uppercase text-xl">Close</p>
                     </div>
                 </div>
-                
             </div>
-            
-        ) 
+        );
     }
 
     return (

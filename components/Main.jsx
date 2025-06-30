@@ -1,10 +1,54 @@
+
 import TitleSection from "./TitleSection";
 import Btn from "./Btn";
 import ExperienceCard from "./ExperienceCard";
+import ProjectCard from "./ProjectCard";
+
+import { useRef, useEffect, useState, use } from "react";
+
 
 function Main() {
+    const experienceRef = useRef(null);
+    const projectRef = useRef(null);
+    const [showCards, setShowCards] = useState(false);
+    const [showProjects, setShowProjects] = useState(false);
+
+    useEffect(() => {
+        const observer = new window.IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setShowCards(true);
+                    observer.disconnect(); // Solo una vez
+                }
+            },
+            { threshold: 0.5 }
+        );
+        if (experienceRef.current) {
+            observer.observe(experienceRef.current);
+        }
+        return () => observer.disconnect();
+    }, []);
+
+    useEffect(() => {
+        const observer = new window.IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setShowProjects(true);
+                    observer.disconnect(); // Solo una vez
+                }
+            }, { threshold: 0.5 }
+        );
+
+        if (projectRef.current){
+            observer.observe(projectRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+
     return (
-        <div className="max-w-7xl mx-auto mt-20" >
+        <div className="max-w-7xl mx-auto mt-20 pb-20" >
             <div className="flex flex-col gap-5 mx-3" id="about-me">
                 <TitleSection
                     spanText={"About Me"}
@@ -31,44 +75,78 @@ function Main() {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-5 mx-3 mt-20" id="experience">
-
+            <div className="flex flex-col gap-5 mx-3 mt-20" id="experience" ref={experienceRef}>
                 <TitleSection
                     spanText={"Experience"}
                     h2Text={"My Experience"}
                 />
 
-                <div className="flex flex-col gap-5">
-                    <ExperienceCard
-                        icon="/img/freelancer.svg"
-                        title="Freelancer"
-                        date="January 2024 - Present"
-                        description="Creating landing pages for my clients tailored to their needs, with the necessary features and a good design."
+                <div className={`flex flex-col gap-5 transition-all duration-700 ${showCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
+                    <div className="grid grid-cols-5 gap-3">
+                        <ExperienceCard
+                            icon="/img/freelancer.svg"
+                            title="Freelancer"
+                            date="January 2024 - Present"
+                            description="Creating landing pages for my clients tailored to their needs, with the necessary features and a good design."
+                        />
+                        <ExperienceCard
+                            icon="/img/figma.svg"
+                            title="UX/UI Design"
+                            date="January 2024 - June 2024"
+                            description="Certified in UX/UI design by the Faculty of Mechanical and Electrical Engineering."
+                        />
+                        <ExperienceCard
+                            icon="/img/pwa.png"
+                            title="Progressive Web Apps"
+                            date="January 2024 - June 2024"
+                            description="Experience creating responsive and modern websites. Creating web experiences that work even offline and can be installed as mobile apps."
+                            gridSpan={"col-span-2"}
+                        />
+                        <ExperienceCard
+                            icon="/img/mern.png"
+                            title="MERN Developer"
+                            date="May 2025 - Today"
+                            description="Handling the MERN stack to build full-stack web applications."
+                        />
+                    </div>
+                </div>
+            </div>
+
+
+            <div className="flex flex-col gap-8 mx-3 mt-20" id="experience" ref={projectRef}>
+                <TitleSection
+                    spanText={"Projects"}
+                    h2Text={"My Projects"}
+                />
+
+                <div className={`flex justify-between gap-3 ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'} transition-all duration-700`}>
+                    <ProjectCard
+                        mainImg={"/img/cloudheaven3.png"}
+                        title={"Cloud Heaven"}
+                        description={"CRUD web application that lets you store your best moments in personalized albums, add captions to your best photos, and collect moments!"}
+                        images={["/img/figma.svg", "/img/figma.svg", "/img/figma.svg"]}
                     />
-                    <ExperienceCard
-                        icon="/img/figma.svg"
-                        title="UX/UI Design"
-                        date="January 2024 - June 2024"
-                        description="Certified in UX/UI design by the Faculty of Mechanical and Electrical Engineering."
+
+                    <ProjectCard
+                        mainImg={"/img/weathern.png"}
+                        title={"Weather - The Weather in Your Pocket"}
+                        description={"Quickly stay up-to-date with weathern, the web app that uses an API and displays the information you need!"}
+                        images={["/img/figma.svg", "/img/figma.svg", "/img/figma.svg"]}
                     />
-                    <ExperienceCard
-                        icon="/img/pwa.png"
-                        title="Progressive Web Apps"
-                        date="January 2024 - June 2024"
-                        description="Experience creating responsive and modern websites. Creating web experiences that work even offline and can be installed as mobile apps."
-                    />
-                    <ExperienceCard
-                        icon="/img/mern.png"
-                        title="MERN Developer"
-                        date="May 2025 - Today"
-                        description="Handling the MERN stack to build full-stack web applications."
+
+                    <ProjectCard
+                        mainImg={"/img/pokedexrn.png"}
+                        title={"Pokedex-RN"}
+                        description={"Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!"}
+                        images={["/img/figma.svg", "/img/figma.svg", "/img/figma.svg"]}
                     />
 
                 </div>
 
-            </div>
-        </div>
 
+            </div>
+
+        </div>
     );
 }
 
