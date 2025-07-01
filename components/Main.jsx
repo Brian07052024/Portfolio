@@ -38,12 +38,14 @@ function Main() {
             }, { threshold: 0.5 }
         );
 
-        if (projectRef.current){
+        if (projectRef.current) {
             observer.observe(projectRef.current);
         }
 
         return () => observer.disconnect();
     }, []);
+
+    const skills = ["Js", "html", "css", "react", "node", "express", "mongo", "git", "github", "figma", "pwa", "tailwind", "php", "scss", "vite", "pug", "mysql"];
 
 
     return (
@@ -112,31 +114,31 @@ function Main() {
             </div>
 
 
-            <div className="flex flex-col gap-8 mx-3 mt-20" id="experience" ref={projectRef}>
+            <div className="flex flex-col gap-8 mx-3 mt-20" id="projects" ref={projectRef}>
                 <TitleSection
                     spanText={"Projects"}
                     h2Text={"My Projects"}
                 />
 
-                <div className={`flex justify-between gap-3`}>
+                <div className={`grid grid-cols-3 gap-5`}>
                     {[
                         {
                             mainImg: "/img/cloudheaven3.png",
-                            title: "Cloud Heaven",
+                            title: "Cloud Heaven - Your Personal Cloud",
                             description: "CRUD web application that lets you store your best moments in personalized albums, add captions to your best photos, and collect moments!",
-                            images: ["/svg/php.svg", "/svg/scss.svg", "/svg/js.svg"]
+                            images: ["/svg/php.svg", "/svg/scss.svg", "/svg/Js.svg"]
                         },
                         {
                             mainImg: "/img/weathern.png",
                             title: "Weather - The Weather in Your Pocket",
-                            description: "Quickly stay up-to-date with weathern, the web app that uses an API and displays the information you need!",
-                            images: ["/svg/js.svg", "/svg/TailwindCSS.svg"]
+                            description: "Quickly stay up-to-date with weathern, the web app that uses an API and displays the information you need, check the weather in your city and others around the world!",
+                            images: ["/svg/html.svg", "/svg/Js.svg", "/svg/TailwindCSS.svg"]
                         },
                         {
                             mainImg: "/img/pokedexrn.png",
-                            title: "Pokedex-RN",
+                            title: "PokeRN - Your Favorite Pocket Monsters",
                             description: "Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!",
-                            images: ["/svg/js.svg", "/svg/TailwindCSS.svg"]
+                            images: ["/svg/html.svg", "/svg/Js.svg", "/svg/TailwindCSS.svg"]
                         }
                     ].map((project, idx) => (
                         <div
@@ -153,6 +155,30 @@ function Main() {
                         </div>
                     ))}
                 </div>
+
+
+            </div>
+
+            <div className="flex flex-col gap-8 mx-3 mt-20" id="skills">
+                <TitleSection
+                    spanText={"Skills"}
+                    h2Text={"My Skills"}
+                />
+                <div className="text-white grid grid-cols-5 gap-5">
+                    {skills.map(
+                        (skill, idx) => 
+                        ( <div className="flex flex-col gap-2 exp-cards items-center justify-center px-16 py-8" idx={idx}> 
+                            <img src={`/skills/${skill}.svg`} alt="skill" className="size-24 object-contain" /> 
+                            <p className="font-bold uppercase">{skill}</p> 
+                        </div> ) 
+                    )}
+                </div>
+                
+                
+
+
+
+
 
 
             </div>
