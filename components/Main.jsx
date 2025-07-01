@@ -1,4 +1,3 @@
-
 import TitleSection from "./TitleSection";
 import Btn from "./Btn";
 import ExperienceCard from "./ExperienceCard";
@@ -64,7 +63,7 @@ function Main() {
                             <p>Let's work together and build something great!</p>
                         </div>
                         <Btn
-                            root="/img/github.svg"
+                            root="/svg/github.svg"
                             text="Contact Me"
                         />
 
@@ -84,13 +83,13 @@ function Main() {
                 <div className={`flex flex-col gap-5 transition-all duration-700 ${showCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
                     <div className="grid grid-cols-5 gap-3">
                         <ExperienceCard
-                            icon="/img/freelancer.svg"
+                            icon="/svg/freelancer.svg"
                             title="Freelancer"
                             date="January 2024 - Present"
                             description="Creating landing pages for my clients tailored to their needs, with the necessary features and a good design."
                         />
                         <ExperienceCard
-                            icon="/img/figma.svg"
+                            icon="/svg/figma.svg"
                             title="UX/UI Design"
                             date="January 2024 - June 2024"
                             description="Certified in UX/UI design by the Faculty of Mechanical and Electrical Engineering."
@@ -119,28 +118,40 @@ function Main() {
                     h2Text={"My Projects"}
                 />
 
-                <div className={`flex justify-between gap-3 ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'} transition-all duration-700`}>
-                    <ProjectCard
-                        mainImg={"/img/cloudheaven3.png"}
-                        title={"Cloud Heaven"}
-                        description={"CRUD web application that lets you store your best moments in personalized albums, add captions to your best photos, and collect moments!"}
-                        images={["/img/figma.svg", "/img/figma.svg", "/img/figma.svg"]}
-                    />
-
-                    <ProjectCard
-                        mainImg={"/img/weathern.png"}
-                        title={"Weather - The Weather in Your Pocket"}
-                        description={"Quickly stay up-to-date with weathern, the web app that uses an API and displays the information you need!"}
-                        images={["/img/figma.svg", "/img/figma.svg", "/img/figma.svg"]}
-                    />
-
-                    <ProjectCard
-                        mainImg={"/img/pokedexrn.png"}
-                        title={"Pokedex-RN"}
-                        description={"Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!"}
-                        images={["/img/figma.svg", "/img/figma.svg", "/img/figma.svg"]}
-                    />
-
+                <div className={`flex justify-between gap-3`}>
+                    {[
+                        {
+                            mainImg: "/img/cloudheaven3.png",
+                            title: "Cloud Heaven",
+                            description: "CRUD web application that lets you store your best moments in personalized albums, add captions to your best photos, and collect moments!",
+                            images: ["/svg/php.svg", "/svg/scss.svg", "/svg/js.svg"]
+                        },
+                        {
+                            mainImg: "/img/weathern.png",
+                            title: "Weather - The Weather in Your Pocket",
+                            description: "Quickly stay up-to-date with weathern, the web app that uses an API and displays the information you need!",
+                            images: ["/svg/js.svg", "/svg/TailwindCSS.svg"]
+                        },
+                        {
+                            mainImg: "/img/pokedexrn.png",
+                            title: "Pokedex-RN",
+                            description: "Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!",
+                            images: ["/svg/js.svg", "/svg/TailwindCSS.svg"]
+                        }
+                    ].map((project, idx) => (
+                        <div
+                            key={project.title}
+                            className={`transition-all duration-700 ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
+                            style={{ transitionDelay: showProjects ? `${idx * 150}ms` : '0ms' }}
+                        >
+                            <ProjectCard
+                                mainImg={project.mainImg}
+                                title={project.title}
+                                description={project.description}
+                                images={project.images}
+                            />
+                        </div>
+                    ))}
                 </div>
 
 

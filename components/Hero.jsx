@@ -45,11 +45,11 @@ function Hero() {
 
                         <div className='flex gap-5'>
                             <Btn
-                                root="/img/linkedin.svg"
+                                root="/svg/linkedin.svg"
                                 text="LinkedIn"
                             />
                             <Btn
-                                root="/img/github.svg"
+                                root="/svg/github.svg"
                                 text="GitHub"
                             />
                         </div>
@@ -59,7 +59,7 @@ function Hero() {
                     <div className='w-full z-20 flex justify-evenly lg:grid lg:grid-cols-3 lg:grid-rows-3'>
 
                         <Icon
-                            icon="/img/react.svg"
+                            icon="/svg/react.svg"
                             nameIcon="React"
                             positionIcon="lg:col-start-1 lg:row-start-1 lg:ml-10"
                             shadowColor="#00C1FF"
@@ -67,7 +67,7 @@ function Hero() {
                             duration="7s"
                         />
                         <Icon
-                            icon="/img/node.svg"
+                            icon="/svg/node.svg"
                             nameIcon="Node.js"
                             positionIcon="lg:col-start-1 lg:row-start-3 lg:-ml-10"
                             shadowColor="#37FF00"
@@ -75,7 +75,7 @@ function Hero() {
                             duration="9s"
                         />
                         <Icon
-                            icon="/img/express.svg"
+                            icon="/svg/express.svg"
                             nameIcon="Express.js"
                             positionIcon="lg:col-start-2 lg:row-start-2 lg:-mr-4"
                             shadowColor="white"
@@ -84,7 +84,7 @@ function Hero() {
                             duration="6s"
                         />
                         <Icon
-                            icon="/img/mongo.svg"
+                            icon="/svg/mongo.svg"
                             nameIcon="MongoDB"
                             positionIcon="lg:col-start-3 lg:row-start-3"
                             shadowColor="#00ED64"
@@ -92,7 +92,7 @@ function Hero() {
                             duration="9s"
                         />
                         <Icon
-                            icon="/img/TailwindCSS.svg"
+                            icon="/svg/TailwindCSS.svg"
                             nameIcon="TailwindCSS"
                             positionIcon="lg:col-start-3 lg:row-start-1"
                             shadowColor="#38BDF8"
@@ -107,7 +107,7 @@ function Hero() {
             </div>
 
             <div className='absolute bottom-0 w-full h-16 z-20 bg-gradient-to-b from-transparen to-negro'></div>
-            <img src="/img/wavesCinco.svg" alt="" className='absolute bottom-0 w-screen z-10' />
+            <img src="/svg/wavesCinco.svg" alt="" className='absolute bottom-0 w-screen z-10' />
 
         </div>
     )

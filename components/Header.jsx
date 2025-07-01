@@ -74,7 +74,7 @@ function Header() {
                     </div>
 
                     <div className="flex flex-col gap-2 items-center cursor-pointer" onClick={handleAvatarClick}>
-                        <img src="/img/x-circle.svg" alt="CLOSE" className="bg-red-300 rounded-full"/>
+                        <img src="/svg/x-circle.svg" alt="CLOSE" className="bg-red-300 rounded-full"/>
                         <p className="text-white bold uppercase text-xl">Close</p>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ function Header() {
 
                 <div className="flex gap-3 items-center">
                     <div id="menu" className="sm:hidden cursor-pointer" onClick={handleMenuClick}>
-                        <img src="/img/Menu.svg" alt="Menu" />
+                        <img src="/svg/Menu.svg" alt="Menu" />
                     </div>
 
                     <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
