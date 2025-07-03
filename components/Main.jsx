@@ -4,57 +4,57 @@ import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
 import Skills from "./Skills";
 
-import { useRef, useEffect, useState, use } from "react";
+import { useRef, useEffect, useState } from "react";
 
 
 function Main() {
+    const aboutMeRef = useRef(null);
     const experienceRef = useRef(null);
     const projectRef = useRef(null);
+    const skillsRef = useRef(null);
+
+    const [showAboutMe, setshowAboutMe] = useState(false);
     const [showCards, setShowCards] = useState(false);
     const [showProjects, setShowProjects] = useState(false);
+    const [showSkills, setShowSkills] = useState(false);
 
+    // Reusable observer hook
     useEffect(() => {
-        const observer = new window.IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setShowCards(true);
-                    observer.disconnect(); // Solo una vez
-                }
-            },
-            { threshold: 0.5 }
-        );
-        if (experienceRef.current) {
-            observer.observe(experienceRef.current);
-        }
-        return () => observer.disconnect();
-    }, []);
+        const createObserver = (ref, setState) => {
+            const observer = new window.IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        setState(true);
+                        observer.disconnect();
+                    }
+                },
+                { threshold: 0.2 }
+            );
+            if (ref.current) {
+                observer.observe(ref.current);
+            }
+            return observer;
+        };
 
-    useEffect(() => {
-        const observer = new window.IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setShowProjects(true);
-                    observer.disconnect(); // Solo una vez
-                }
-            }, { threshold: 0.5 }
-        );
+        const observers = [
+            createObserver(aboutMeRef, setshowAboutMe),
+            createObserver(experienceRef, setShowCards),
+            createObserver(projectRef, setShowProjects),
+            createObserver(skillsRef, setShowSkills)
+        ];
 
-        if (projectRef.current) {
-            observer.observe(projectRef.current);
-        }
-
-        return () => observer.disconnect();
+        return () => observers.forEach(observer => observer.disconnect());
     }, []);
 
     return (
         <div className="max-w-7xl mx-auto mt-20 pb-20" >
-            <div className="flex flex-col gap-5 mx-3" id="about-me">
+            <div className="flex flex-col gap-5 mx-3" id="about-me" >
                 <TitleSection
                     spanText={"About Me"}
                     h2Text={"Who I Am?"}
                 />
 
-                <div className="flex flex-col md:flex-row gap-5">
+                <div className="flex flex-col md:flex-row gap-5" ref={aboutMeRef}>
                     <div className="">
                         <div className="text-white flex flex-col gap-3 mb-5 text-pretty">
                             <p><span className="text-enfasis text-4xl">Hello</span>, my name is Brian Orlando Ramírez Núñez. I'm a Systems Engineering student and I love programming. </p>
@@ -63,12 +63,13 @@ function Main() {
                             <p>Let's work together and build something great!</p>
                         </div>
                         <Btn
-                            root="/svg/github.svg"
+                            root="/skills/github.svg"
                             text="Contact Me"
                         />
 
                     </div>
-                    <div className="rounded-2xl overflow-hidden">
+
+                    <div className={`rounded-2xl overflow-hidden transition duration-700 ${showAboutMe ? 'opacity-100 translate-y-0 md:translate-x-0' : 'opacity-0 translate-y-8 md:translate-x-8 pointer-events-none'}`}>
                         <img src="/img/aboutmeimg.png" alt="ME" className="hover:scale-110 transition cursor-pointer" />
                     </div>
                 </div>
@@ -80,8 +81,8 @@ function Main() {
                     h2Text={"My Experience"}
                 />
 
-                <div className={`flex flex-col gap-5 transition-all duration-700 ${showCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
-                    <div className="grid grid-cols-5 gap-3">
+                <div className={`flex flex-col gap-5 transition duration-700 ${showCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-3">
                         <ExperienceCard
                             icon="/svg/freelancer.svg"
                             title="Freelancer"
@@ -99,7 +100,7 @@ function Main() {
                             title="Progressive Web Apps"
                             date="January 2024 - June 2024"
                             description="Experience creating responsive and modern websites. Creating web experiences that work even offline and can be installed as mobile apps."
-                            gridSpan={"col-span-2"}
+                            gridSpan={"lg:col-span-2"}
                         />
                         <ExperienceCard
                             icon="/img/mern.png"
@@ -118,7 +119,7 @@ function Main() {
                     h2Text={"My Projects"}
                 />
 
-                <div className={`grid grid-cols-3 gap-5`}>
+                <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-9`}>
                     {[
                         {
                             mainImg: "/img/cloudheaven3.png",
@@ -141,7 +142,7 @@ function Main() {
                     ].map((project, idx) => (
                         <div
                             key={project.title}
-                            className={`transition-all duration-700 ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
+                            className={`transition duration-700 ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
                             idx={idx}
                         >
                             <ProjectCard
@@ -157,13 +158,19 @@ function Main() {
 
             </div>
 
-            <div className="flex flex-col gap-8 mx-3 mt-20" id="skills">
+
+            <div className="flex flex-col gap-8 mx-3 mt-20" id="skills" ref={skillsRef}>
                 <TitleSection
                     spanText={"Skills"}
                     h2Text={"My Skills"}
                 />
-                <Skills />
+
+                <div className={`transition duration-700 ${showSkills ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}>
+
+                    <Skills />
+                </div>
             </div>
+
 
         </div>
     );

@@ -1,46 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "./Link";
 
 
 function Header() {
-    const [showLinks, setShowLinks] = useState(false);
-    const [isClosing, setIsClosing] = useState(false);
     const [isShowing, setIsShowing] = useState(false);
     const [isAvatarClosing, setIsAvatarClosing] = useState(false);
 
-    function handleMenuClick() {
-        if (showLinks) {
-            setIsClosing(true);
-            setTimeout(() => {
-                setShowLinks(false);
-                setIsClosing(false);
-            }, 600); // Duración de la animación fade-out
-        } else {
-            setShowLinks(true);
-        }
-    }
+    // Estado para mostrar/ocultar header según scroll
+    const [showHeader, setShowHeader] = useState(true);
+    const lastScrollY = useRef(0);
 
-    function renderMobileMenu() {
-        if (!showLinks && !isClosing) return null;
-        return (
-            <div
-                className={`sm:hidden absolute top-full w-[95%] py-4 z-50 animate-fade ${showLinks && !isClosing ? '' : 'animate-fade-out'}`}
-            >
-                <nav>
-                    <ul>
-                        <li className="flex flex-col gap-1 text-center">
-                            <Link enlace="#header" text="Home" />
-                            <Link enlace="#about-me" text="About Me" />
-                            <Link enlace="#experience" text="Experience" />
-                            <Link enlace="#projects" text="Projects" />
-                            <Link enlace="#skills" text="Skills" />
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        );
-    }
-
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY < 50) {
+                setShowHeader(true);
+            } else if (currentScrollY > lastScrollY.current) {
+                setShowHeader(false); // Bajando
+            } else {
+                setShowHeader(true); // Subiendo
+            }
+            lastScrollY.current = currentScrollY;
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     function handleAvatarClick() {
         if (isShowing) {
@@ -56,79 +40,64 @@ function Header() {
 
     function renderAvatar() {
         if (!isShowing && !isAvatarClosing) return null;
+        // Elimina el div extra y asegúrate de que el modal cubre toda la pantalla
         return (
-            <div>
-                <div
-                    className={
-                        (isShowing && !isAvatarClosing
-                            ? "bg-black/25 backdrop-blur-md fixed inset-0 z-[999] flex items-center justify-center flex-col gap-5 animate-fade"
-                            : isAvatarClosing
-                                ? "bg-black/25 backdrop-blur-md fixed inset-0 z-[999] flex items-center justify-center flex-col gap-5 animate-fade-out"
-                                : ""
+            <div
+                className={
+                    (isShowing && !isAvatarClosing
+                        ? "bg-black/25 backdrop-blur-md fixed inset-0 z-[9999] flex items-center justify-center flex-col gap-5 animate-fade"
+                        : isAvatarClosing
+                            ? "bg-black/25 backdrop-blur-md fixed inset-0 z-[9999] flex items-center justify-center flex-col gap-5 animate-fade-out"
+                            : ""
                     )
-                }>
-                    <div className="flex flex-col gap-2 items-center mx-3 text-center">
-                        <img src="/img/me.png" alt="Avatar" className="rounded-full" />
-                        <p className="text-white bold text-2xl">Brian Orlando Ramirez Nuñez</p>
-                        <p className="text-white bold text-2xl">Systems administration engineer</p>
-                    </div>
-
-                    <div className="flex flex-col gap-2 items-center cursor-pointer" onClick={handleAvatarClick}>
-                        <img src="/svg/x-circle.svg" alt="CLOSE" className="bg-red-300 rounded-full"/>
-                        <p className="text-white bold uppercase text-xl">Close</p>
-                    </div>
+                }
+                style={{ pointerEvents: 'auto' }}
+            >
+                <div className="flex flex-col gap-2 items-center mx-3 text-center">
+                    <img src="/img/me.png" alt="Avatar" className="rounded-full w-32 h-32 object-cover border-4 border-white shadow-lg" />
+                    <p className="text-white font-bold text-2xl">Brian Orlando Ramirez Nuñez</p>
+                    <p className="text-white font-semibold text-lg">Systems administration engineer</p>
+                </div>
+                <div className="flex flex-col gap-2 items-center cursor-pointer mt-4" onClick={handleAvatarClick}>
+                    <img src="/svg/x-circle.svg" alt="CLOSE" className="bg-red-300 rounded-full w-10 h-10" />
+                    <p className="text-white font-bold uppercase text-xl">Close</p>
                 </div>
             </div>
         );
     }
 
     return (
-
-        <header id="header" className="bg-transparent flex justify-center py-3 items-center absolute top-0 right-0 left-0 z-50">
-
-            <div className="w-7xl mx-3 flex flex-col md:flex-row justify-between items-center">
-
-                <div className="flex gap-3 items-center">
-                    <div id="menu" className="sm:hidden cursor-pointer" onClick={handleMenuClick}>
-                        <img src="/svg/Menu.svg" alt="Menu" />
+        <>
+            {renderAvatar()}
+            <header
+                id="header"
+                className={`backdrop-blur-md bg-transparent flex justify-center py-3 items-center fixed top-0 right-0 left-0 z-50 transition-transform duration-300  ${showHeader ? 'translate-y-0' : '-translate-y-full '}`}
+            >
+                <div className="w-7xl mx-3 flex flex-col md:flex-row justify-between items-center">
+                    <div className="w-full flex flex-col gap-1 md:flex-row justify-between items-center">
+                        <div className="flex gap-3 items-center">
+                            <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
+                            <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
+                            <div className="flex flex-col">
+                                <p className="text-white">Brian Orlando Ramirez Nuñez</p>
+                                <p className="text-white font-bold text-sm"><span className="bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">FullStack</span> Developer</p>
+                            </div>
+                        </div>
+                        <nav>
+                            <ul>
+                                <li className="flex gap-5 text-center">
+                                    <Link enlace="#header" text="Home" />
+                                    <Link enlace="#about-me" text="About" />
+                                    <Link enlace="#experience" text="Experience" />
+                                    <Link enlace="#projects" text="Projects" />
+                                    <Link enlace="#skills" text="Skills" />
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
-
-                    <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
-
-                    <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
-
-                    <div className="flex flex-col">
-                        <p className="text-white">Brian Orlando Ramirez Nuñez</p>
-                        <p className="text-white font-bold text-sm"><span className="bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">FullStack</span> Developer</p>
-                    </div>
-
-
-
                 </div>
-
-
-
-                {renderMobileMenu()}
-                {renderAvatar()}
-
-                {/* Desktop nav */}
-                <div className="hidden sm:block">
-                    <nav>
-                        <ul>
-                            <li className="flex flex-col sm:flex-row gap-5 text-center">
-                                <Link enlace="#header" text="Home" />
-                                <Link enlace="#about-me" text="About Me" />
-                                <Link enlace="#experience" text="Experience" />
-                                <Link enlace="#projects" text="Projects" />
-                                <Link enlace="#skills" text="Skills" />
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-            </div>
-
-        </header>
+            </header>
+        </>
     );
 }
 

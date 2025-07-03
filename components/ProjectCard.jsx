@@ -1,7 +1,7 @@
 function ProjectCard({ mainImg, title, description, images = []}) {
     return (
-        <div className="bg-white rounded-2xl px-3 flex flex-col mt-5 gap-5 w-full items-center justify-center">
-            <img src={mainImg} alt="mainImg" className="max-w-[360px] rounded-2xl -mt-6 shadow-xl hover:-translate-y-3 duration-[250ms] transition cursor-pointer" />
+        <div className="bg-white max-w-[405px] rounded-2xl px-3 flex flex-col mt-5 gap-5 w-full items-center justify-center">
+            <img src={mainImg} alt="mainImg" className="w-[360px] rounded-2xl -mt-6 shadow-xl hover:-translate-y-3 duration-[250ms] transition cursor-pointer" />
             <div className="flex flex-col h-full mb-3 gap-2 justify-between">
 
                 <h4 className="font-bold">{title}</h4>
