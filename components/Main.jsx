@@ -2,6 +2,7 @@ import TitleSection from "./TitleSection";
 import Btn from "./Btn";
 import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
+import Skills from "./Skills";
 
 import { useRef, useEffect, useState, use } from "react";
 
@@ -44,9 +45,6 @@ function Main() {
 
         return () => observer.disconnect();
     }, []);
-
-    const skills = ["Js", "html", "css", "react", "node", "express", "mongo", "git", "github", "figma", "pwa", "tailwind", "php", "scss", "vite", "pug", "mysql"];
-
 
     return (
         <div className="max-w-7xl mx-auto mt-20 pb-20" >
@@ -144,7 +142,7 @@ function Main() {
                         <div
                             key={project.title}
                             className={`transition-all duration-700 ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
-                            style={{ transitionDelay: showProjects ? `${idx * 150}ms` : '0ms' }}
+                            idx={idx}
                         >
                             <ProjectCard
                                 mainImg={project.mainImg}
@@ -164,23 +162,7 @@ function Main() {
                     spanText={"Skills"}
                     h2Text={"My Skills"}
                 />
-                <div className="text-white grid grid-cols-5 gap-5">
-                    {skills.map(
-                        (skill, idx) => 
-                        ( <div className="flex flex-col gap-2 exp-cards items-center justify-center px-16 py-8" idx={idx}> 
-                            <img src={`/skills/${skill}.svg`} alt="skill" className="size-24 object-contain" /> 
-                            <p className="font-bold uppercase">{skill}</p> 
-                        </div> ) 
-                    )}
-                </div>
-                
-                
-
-
-
-
-
-
+                <Skills />
             </div>
 
         </div>
