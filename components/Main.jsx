@@ -89,13 +89,13 @@ function Main() {
                             description="Creating landing pages for my clients tailored to their needs, with the necessary features and a good design."
                         />
                         <ExperienceCard
-                            icon="/svg/figma.svg"
+                            icon="/skills/figma.svg"
                             title="UX/UI Design"
                             date="January 2024 - June 2024"
                             description="Certified in UX/UI design by the Faculty of Mechanical and Electrical Engineering."
                         />
                         <ExperienceCard
-                            icon="/img/pwa.png"
+                            icon="/skills/pwa.svg"
                             title="Progressive Web Apps"
                             date="January 2024 - June 2024"
                             description="Experience creating responsive and modern websites. Creating web experiences that work even offline and can be installed as mobile apps."
@@ -124,19 +124,19 @@ function Main() {
                             mainImg: "/img/cloudheaven3.png",
                             title: "Cloud Heaven - Your Personal Cloud",
                             description: "CRUD web application that lets you store your best moments in personalized albums, add captions to your best photos, and collect moments!",
-                            images: ["/svg/php.svg", "/svg/scss.svg", "/svg/Js.svg"]
+                            images: ["/skills/php.svg", "/skills/scss.svg", "/skills/Js.svg"]
                         },
                         {
                             mainImg: "/img/weathern.png",
                             title: "Weather - The Weather in Your Pocket",
                             description: "Quickly stay up-to-date with weathern, the web app that uses an API and displays the information you need, check the weather in your city and others around the world!",
-                            images: ["/svg/html.svg", "/svg/Js.svg", "/svg/TailwindCSS.svg"]
+                            images: ["/skills/html.svg", "/skills/Js.svg", "/skills/tailwind.svg"]
                         },
                         {
                             mainImg: "/img/pokedexrn.png",
                             title: "PokeRN - Your Favorite Pocket Monsters",
                             description: "Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!",
-                            images: ["/svg/html.svg", "/svg/Js.svg", "/svg/TailwindCSS.svg"]
+                            images: ["/skills/html.svg", "/skills/Js.svg", "/skills/tailwind.svg"]
                         }
                     ].map((project, idx) => (
                         <div

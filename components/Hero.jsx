@@ -49,7 +49,7 @@ function Hero() {
                                 text="LinkedIn"
                             />
                             <Btn
-                                root="/svg/github.svg"
+                                root="/skills/github.svg"
                                 text="GitHub"
                             />
                         </div>
@@ -59,7 +59,7 @@ function Hero() {
                     <div className='w-full z-20 flex justify-evenly lg:grid lg:grid-cols-3 lg:grid-rows-3'>
 
                         <Icon
-                            icon="/svg/react.svg"
+                            icon="/skills/react.svg"
                             nameIcon="React"
                             positionIcon="lg:col-start-1 lg:row-start-1 lg:ml-10"
                             shadowColor="#00C1FF"
@@ -67,7 +67,7 @@ function Hero() {
                             duration="7s"
                         />
                         <Icon
-                            icon="/svg/node.svg"
+                            icon="/skills/node.svg"
                             nameIcon="Node.js"
                             positionIcon="lg:col-start-1 lg:row-start-3 lg:-ml-10"
                             shadowColor="#37FF00"
@@ -75,7 +75,7 @@ function Hero() {
                             duration="9s"
                         />
                         <Icon
-                            icon="/svg/express.svg"
+                            icon="/skills/express.svg"
                             nameIcon="Express.js"
                             positionIcon="lg:col-start-2 lg:row-start-2 lg:-mr-4"
                             shadowColor="white"
@@ -84,7 +84,7 @@ function Hero() {
                             duration="6s"
                         />
                         <Icon
-                            icon="/svg/mongo.svg"
+                            icon="/skills/mongo.svg"
                             nameIcon="MongoDB"
                             positionIcon="lg:col-start-3 lg:row-start-3"
                             shadowColor="#00ED64"
@@ -92,7 +92,7 @@ function Hero() {
                             duration="9s"
                         />
                         <Icon
-                            icon="/svg/TailwindCSS.svg"
+                            icon="/skills/tailwind.svg"
                             nameIcon="TailwindCSS"
                             positionIcon="lg:col-start-3 lg:row-start-1"
                             shadowColor="#38BDF8"
