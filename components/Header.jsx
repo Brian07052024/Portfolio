@@ -86,11 +86,11 @@ function Header() {
                         <nav>
                             <ul>
                                 <li className="flex gap-3 text-center">
-                                    <Link enlace="#hero" text="Home" />
                                     <Link enlace="#about-me" text="About" />
                                     <Link enlace="#experience" text="Experience" />
                                     <Link enlace="#projects" text="Projects" />
                                     <Link enlace="#skills" text="Skills" />
+                                    <Link enlace="#contact" text="Contact" />
                                 </li>
                             </ul>
                         </nav>

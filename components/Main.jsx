@@ -12,11 +12,13 @@ function Main() {
     const experienceRef = useRef(null);
     const projectRef = useRef(null);
     const skillsRef = useRef(null);
+    const contactRef = useRef(null);
 
     const [showAboutMe, setshowAboutMe] = useState(false);
     const [showCards, setShowCards] = useState(false);
     const [showProjects, setShowProjects] = useState(false);
     const [showSkills, setShowSkills] = useState(false);
+    const [showContact, setShowContact] = useState(false);
 
     // Reusable observer hook
     useEffect(() => {
@@ -40,7 +42,8 @@ function Main() {
             createObserver(aboutMeRef, setshowAboutMe),
             createObserver(experienceRef, setShowCards),
             createObserver(projectRef, setShowProjects),
-            createObserver(skillsRef, setShowSkills)
+            createObserver(skillsRef, setShowSkills),
+            createObserver(contactRef, setShowContact) // Contact section doesn't need to set state
         ];
 
         return () => observers.forEach(observer => observer.disconnect());
@@ -65,6 +68,7 @@ function Main() {
                         <Btn
                             root="/svg/mail.svg"
                             text="Contact Me"
+                            link="#contact"
                         />
 
                     </div>
@@ -139,7 +143,7 @@ function Main() {
                             mainImg: "/img/pokedexrn.png",
                             title: "PokeRN - Your Favorite Pocket Monsters",
                             description: "Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!",
-                            link:"https://pokedex-rn.netlify.app/",
+                            link: "https://pokedex-rn.netlify.app/",
                             images: ["/skills/html.svg", "/skills/Js.svg", "/skills/tailwind.svg"]
                         }
                     ].map((project, idx) => (
@@ -175,25 +179,41 @@ function Main() {
                 </div>
             </div>
 
-            <div className="flex flex-col gap-8 mx-3 mt-20" id="skills" ref={skillsRef}>
+            <div className="flex flex-col gap-8 mx-3 mt-20" id="contact" ref={contactRef}>
                 <TitleSection
                     spanText={"Contact"}
                     h2Text={"Contact Me"}
                 />
+                <div className={`flex flex-col-reverse items-center md:items-start md:flex-row gap-10 transition duration-700 ${showContact ? 'opacity-100 translate-y-0 md:translate-x-0' : 'opacity-0 translate-y-8 md:translate-x-8 pointer-events-none'}`}>
 
-                <div>
-                    <form action="" className="block w-max bg-white"> 
+                    <form action="" className="block w-full max-w-96 min-w-72 bg-white p-5 rounded-2xl">
                         <div className="flex flex-col gap-5">
-                            <input type="text" placeholder="Your Name" className="p-3 rounded-lg bg-gray-800 text-white" />
-                            <input type="email" placeholder="Your Email" className="p-3 rounded-lg bg-gray-800 text-white" />
-                            <textarea placeholder="Your Message" className="p-3 rounded-lg bg-gray-800 text-white h-32"></textarea>
+                            <p className="font-bold text-center text-xl">Contact me</p>
+                            <fieldset className="font-semibold">Name</fieldset>
+                            <input type="text" placeholder="Your Name" className="p-3 rounded-lg bg-black text-white" />
+
+                            <fieldset className="font-semibold">Email</fieldset>
+                            <input type="email" placeholder="Your Email" className="p-3 rounded-lg bg-black text-white" />
+
+                            <fieldset className="font-semibold">Message</fieldset>
+                            <textarea placeholder="Your Message" className="p-3 rounded-lg bg-black text-white h-32"></textarea>
                             <Btn
+                                typeBtn="submit"
                                 root="/svg/mail.svg"
                                 text="Send Message"
-                                colr="bg-black"
+                                colr="bg-black text-white"
                             />
                         </div>
                     </form>
+
+                    <div className="flex flex-col gap-5">
+                        <p className="text-white text-2xl md:text-5xl">Do you have a great idea and <span className="text-3xl md:text-6xl bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">want </span>to make it a reality?</p>
+                        <p className="text-white text-2xl md:text-5xl">Let's work <span className="text-3xl md:text-6xl bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">together </span>and build something great!</p>
+                    </div>
+
+
+
+
                 </div>
             </div>
 

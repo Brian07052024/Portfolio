@@ -15,7 +15,7 @@ function App() {
       <Main />
 
       <footer className=' bg-black flex justify-center py-12'>
-        <div className="max-w-7xl flex mx-3 w-full gap-5 items-center justify-between">
+        <div className="max-w-7xl flex flex-col md:flex-row  mx-3 w-full gap-5 items-center justify-between">
           <p className="text-white font-bold text-xl"><span className="bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">FullStack</span> Developer</p>
 
           <p className="text-gray-400 text-base">Brian Ramirez Nuñez</p>
