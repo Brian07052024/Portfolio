@@ -25,13 +25,13 @@ function Hero() {
     }, []);
 
     return (
-        <div className='h-screen bg-gradient-to-b from-[#101010] via-[#1A0824] to-[#2d0144] flex justify-center items-center relative'>
+        <div className='h-screen bg-gradient-to-b from-[#101010] via-[#1A0824] to-[#2d0144] flex justify-center items-center relative' id='hero'>
 
             <div className='max-w-7xl w-full mx-3'>
 
-                <div className='flex flex-col gap-10 lg:flex-row justify-between w-full'>
+                <div className='flex flex-col gap-10 xl:flex-row justify-between w-full'>
 
-                    <div className='text-white font-bold text-2xl md:text-5xl flex flex-col gap-3 items-center lg:items-start lg:justify-center w-full relative z-40 '>
+                    <div className='text-white font-bold text-2xl md:text-5xl flex flex-col gap-3 items-center xl:items-start xl:justify-center w-full relative z-40'>
                         <div>
                             <h1 className=''><span className='bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent'>FullStack </span>Developer<span className='text-xs bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent'> MERN</span></h1>
 
@@ -47,16 +47,18 @@ function Hero() {
                             <Btn
                                 root="/svg/linkedin.svg"
                                 text="LinkedIn"
+                                link="https://www.linkedin.com/in/brian-ramirez-nu%C3%B1ez-544993341/"
                             />
                             <Btn
                                 root="/skills/github.svg"
                                 text="GitHub"
+                                link="https://github.com/Brian07052024"
                             />
                         </div>
 
                     </div>
 
-                    <div className='w-full z-20 flex justify-evenly lg:grid lg:grid-cols-3 lg:grid-rows-3'>
+                    <div className='w-full z-20 flex justify-evenly xl:grid xl:grid-cols-3 xl:grid-rows-3'>
 
                         <Icon
                             icon="/skills/react.svg"

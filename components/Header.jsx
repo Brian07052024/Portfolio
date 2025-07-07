@@ -73,20 +73,20 @@ function Header() {
                 id="header"
                 className={`backdrop-blur-md bg-transparent flex justify-center py-3 items-center fixed top-0 right-0 left-0 z-50 transition-transform duration-300  ${showHeader ? 'translate-y-0' : '-translate-y-full '}`}
             >
-                <div className="w-7xl mx-3 flex flex-col md:flex-row justify-between items-center">
-                    <div className="w-full flex flex-col gap-1 md:flex-row justify-between items-center">
+                <div className="w-7xl flex flex-col md:flex-row justify-between items-center">
+                    <div className="mx-3 w-full flex flex-col gap-1 md:flex-row justify-between items-center">
                         <div className="flex gap-3 items-center">
                             <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
                             <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
                             <div className="flex flex-col">
-                                <p className="text-white">Brian Orlando Ramirez Nuñez</p>
+                                <p className="text-white">Brian Ramirez Nuñez</p>
                                 <p className="text-white font-bold text-sm"><span className="bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">FullStack</span> Developer</p>
                             </div>
                         </div>
                         <nav>
                             <ul>
-                                <li className="flex gap-5 text-center">
-                                    <Link enlace="#header" text="Home" />
+                                <li className="flex gap-3 text-center">
+                                    <Link enlace="#hero" text="Home" />
                                     <Link enlace="#about-me" text="About" />
                                     <Link enlace="#experience" text="Experience" />
                                     <Link enlace="#projects" text="Projects" />
