@@ -1,0 +1,5 @@
+# robots.txt para Portfolio Web
+User-agent: *
+Allow: /
+
+Sitemap: https://tusitio.com/sitemap.xml
