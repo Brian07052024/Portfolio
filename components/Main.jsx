@@ -1,8 +1,10 @@
+
 import TitleSection from "./TitleSection";
 import Btn from "./Btn";
 import ExperienceCard from "./ExperienceCard";
 import ProjectCard from "./ProjectCard";
 import Skills from "./Skills";
+import { sendContactEmail } from "./emailService";
 
 import { useRef, useEffect, useState } from "react";
 
@@ -49,6 +51,103 @@ function Main() {
         return () => observers.forEach(observer => observer.disconnect());
     }, []);
 
+    const projects = [
+        {
+            mainImg: "/img/cloudheaven3.png",
+            title: "Cloud Heaven - Your Personal Cloud",
+            description: "CRUD web application that lets you store your best moments in personalized albums, add captions to your best photos, and collect moments!",
+            link: "https://github.com/Brian07052024/Cloud-Heaven",
+            images: ["/skills/php.svg", "/skills/scss.svg", "/skills/Js.svg"]
+        },
+        {
+            mainImg: "/img/weathern.png",
+            title: "Weather - The Weather in Your Pocket",
+            description: "Quickly stay up-to-date with weathern, the web app that uses an API and displays the information you need, check the weather in your city and others around the world!",
+            link: "https://weathe-rn.netlify.app/",
+            images: ["/skills/html.svg", "/skills/Js.svg", "/skills/tailwind.svg"]
+        },
+        {
+            mainImg: "/img/pokedexrn.png",
+            title: "PokeRN - Your Favorite Pocket Monsters",
+            description: "Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!",
+            link: "https://pokedex-rn.netlify.app/",
+            images: ["/skills/html.svg", "/skills/Js.svg", "/skills/tailwind.svg"]
+        }
+    ]
+
+    const name = document.querySelector("#name");
+    const email = document.querySelector("#email");
+    const message = document.querySelector("#message");
+    const errorContainer = document.querySelector("#form-errors");
+
+    function validar(e) {
+        e.preventDefault();
+        const values = {
+            name: name.value.trim(),
+            email: email.value.trim(),
+            message: message.value.trim()
+        }
+
+        const errores = [];
+
+        Object.entries(values).forEach(([key, value]) => {
+            if (value === "") {
+                errores.push(key);
+            }
+        });
+
+        // Limpiar errores anteriores
+        if (errorContainer) {
+            errorContainer.innerHTML = "";
+        }
+
+        if (errores.length > 0) {
+            if (errorContainer) {
+                errores.forEach((campo) => {
+                    const p = document.createElement("p");
+                    p.textContent = `El campo '${campo}' es obligatorio.`;
+                    p.className = "bg-red-100 text-red-600 rounded p-2 mb-2 text-sm font-semibold text-center";
+                    errorContainer.appendChild(p);
+                });
+            }
+            return;
+        }
+
+        // Si no hay errores, enviamos el form
+        sendContactEmail(values)
+          .then((result) => {
+            console.log('Correo enviado', result.text);
+            // mensaje de éxito al usuario
+            if (errorContainer) {
+              const p = document.createElement("p");
+              p.textContent = "¡Mensaje enviado con éxito!";
+              p.className = "bg-green-100 text-green-700 rounded p-2 mb-2 text-sm font-semibold text-center";
+              errorContainer.appendChild(p);
+              // Ocultar el mensaje después de 3 segundos
+              setTimeout(() => {
+                if (errorContainer.contains(p)) {
+                  errorContainer.removeChild(p);
+                }
+              }, 3000);
+            }
+            // Limpiar campos
+            name.value = '';
+            email.value = '';
+            message.value = '';
+          })
+          .catch((error) => {
+            console.log('Error al enviar', error.text);
+            if (errorContainer) {
+              const p = document.createElement("p");
+              p.textContent = "Hubo un error al enviar el mensaje. Intenta de nuevo.";
+              p.className = "bg-red-100 text-red-600 rounded p-2 mb-2 text-sm font-semibold text-center";
+              errorContainer.appendChild(p);
+            }
+          });
+    }
+
+    // Main component rendering
+
     return (
         <div className="max-w-7xl mx-auto mt-20 pb-20" >
             <div className="flex flex-col gap-5 mx-3" id="about-me" >
@@ -58,7 +157,7 @@ function Main() {
                 />
 
                 <div className="flex flex-col md:flex-row gap-5" ref={aboutMeRef}>
-                    <div className="">
+                    <div className={`transition duration-700 ${showAboutMe ? 'opacity-100 -translate-x-0 md:-translate-x-0' : 'opacity-0 -translate-x-8 md:-translate-x-8 pointer-events-none'}`}>
                         <div className="text-white flex flex-col gap-3 mb-5 text-pretty">
                             <p><span className="text-enfasis text-4xl">Hello</span>, my name is Brian Orlando Ramírez Núñez. I'm a Systems Engineering student and I love programming. </p>
                             <p>I thoroughly enjoy every step of the development process, from tackling challenges to delving deeper into projects. I'm motivated by the desire to push boundaries, solve problems efficiently, and always seek best practices and achieve high-quality results.
@@ -73,7 +172,7 @@ function Main() {
 
                     </div>
 
-                    <div className={`rounded-2xl overflow-hidden transition duration-700 ${showAboutMe ? 'opacity-100 translate-y-0 md:translate-x-0' : 'opacity-0 translate-y-8 md:translate-x-8 pointer-events-none'}`}>
+                    <div className={`rounded-2xl overflow-hidden transition duration-700 ${showAboutMe ? 'opacity-100 translate-x-0 md:translate-x-0' : 'opacity-0 translate-x-8 md:translate-x-8 pointer-events-none'}`}>
                         <img src="/img/aboutmeimg.png" alt="ME" className="hover:scale-110 transition cursor-pointer" />
                     </div>
                 </div>
@@ -124,29 +223,7 @@ function Main() {
                 />
 
                 <div className={`grid mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-10`}>
-                    {[
-                        {
-                            mainImg: "/img/cloudheaven3.png",
-                            title: "Cloud Heaven - Your Personal Cloud",
-                            description: "CRUD web application that lets you store your best moments in personalized albums, add captions to your best photos, and collect moments!",
-                            link: "https://github.com/Brian07052024/Cloud-Heaven",
-                            images: ["/skills/php.svg", "/skills/scss.svg", "/skills/Js.svg"]
-                        },
-                        {
-                            mainImg: "/img/weathern.png",
-                            title: "Weather - The Weather in Your Pocket",
-                            description: "Quickly stay up-to-date with weathern, the web app that uses an API and displays the information you need, check the weather in your city and others around the world!",
-                            link: "https://weathe-rn.netlify.app/",
-                            images: ["/skills/html.svg", "/skills/Js.svg", "/skills/tailwind.svg"]
-                        },
-                        {
-                            mainImg: "/img/pokedexrn.png",
-                            title: "PokeRN - Your Favorite Pocket Monsters",
-                            description: "Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!",
-                            link: "https://pokedex-rn.netlify.app/",
-                            images: ["/skills/html.svg", "/skills/Js.svg", "/skills/tailwind.svg"]
-                        }
-                    ].map((project, idx) => (
+                    {projects.map((project, idx) => (
                         <div
                             key={project.title}
                             className={`transition duration-700 ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
@@ -184,19 +261,20 @@ function Main() {
                     spanText={"Contact"}
                     h2Text={"Contact Me"}
                 />
-                <div className={`flex flex-col-reverse items-center md:items-start md:flex-row gap-10 transition duration-700 ${showContact ? 'opacity-100 translate-y-0 md:translate-x-0' : 'opacity-0 translate-y-8 md:translate-x-8 pointer-events-none'}`}>
+                <div className={`flex flex-col-reverse items-center md:items-start md:flex-row gap-10`}>
 
-                    <form action="" className="block w-full max-w-96 min-w-72 bg-white p-5 rounded-2xl">
+                    <form action="" className={`block w-full max-w-96 min-w-72 bg-white p-5 rounded-2xl transition duration-700 ${showContact ? 'opacity-100 translate-x-0 md:translate-x-0' : 'opacity-0 -translate-x-8 md:-translate-x-8 pointer-events-none'}`} onSubmit={validar}>
+                        
                         <div className="flex flex-col gap-5">
                             <p className="font-bold text-center text-xl">Contact me</p>
-                            <fieldset className="font-semibold">Name</fieldset>
-                            <input type="text" placeholder="Your Name" className="p-3 rounded-lg bg-black text-white" />
+                            <label className="font-semibold" htmlFor="name">Name</label>
+                            <input id="name" name="name" type="text" placeholder="Your Name" className="p-3 rounded-lg bg-black text-white" />
 
-                            <fieldset className="font-semibold">Email</fieldset>
-                            <input type="email" placeholder="Your Email" className="p-3 rounded-lg bg-black text-white" />
+                            <label className="font-semibold" htmlFor="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="Your Email" className="p-3 rounded-lg bg-black text-white" />
 
-                            <fieldset className="font-semibold">Message</fieldset>
-                            <textarea placeholder="Your Message" className="p-3 rounded-lg bg-black text-white h-32"></textarea>
+                            <label className="font-semibold" htmlFor="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Your Message" className="p-3 rounded-lg bg-black text-white h-32"></textarea>
                             <Btn
                                 typeBtn="submit"
                                 root="/svg/mail.svg"
@@ -206,9 +284,10 @@ function Main() {
                         </div>
                     </form>
 
-                    <div className="flex flex-col gap-5">
+                    <div className={`flex flex-col gap-5 transition duration-700 ${showContact ? 'opacity-100 translate-x-0 md:translate-x-0' : 'opacity-0 translate-x-8 md:translate-x-8 pointer-events-none'}`}>
                         <p className="text-white text-2xl md:text-5xl">Do you have a great idea and <span className="text-3xl md:text-6xl bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">want </span>to make it a reality?</p>
                         <p className="text-white text-2xl md:text-5xl">Let's work <span className="text-3xl md:text-6xl bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">together </span>and build something great!</p>
+                        <div id="form-errors" className="mb-2"></div>
                     </div>
 
 
