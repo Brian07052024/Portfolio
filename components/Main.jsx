@@ -157,7 +157,7 @@ function Main() {
                 />
 
                 <div className="flex flex-col md:flex-row gap-5" ref={aboutMeRef}>
-                    <div className={`transition duration-700 ${showAboutMe ? 'opacity-100 -translate-x-0 md:-translate-x-0' : 'opacity-0 -translate-x-8 md:-translate-x-8 pointer-events-none'}`}>
+                    <div className={`transition duration-700 ${showAboutMe ? 'opacity-100 md:-translate-x-0 translate-y-0' : 'opacity-0 md:-translate-x-8 translate-y-8 pointer-events-none'}`}>
                         <div className="text-white flex flex-col gap-3 mb-5 text-pretty">
                             <p><span className="text-enfasis text-4xl">Hello</span>, my name is Brian Orlando Ramírez Núñez. I'm a Systems Engineering student and I love programming. </p>
                             <p>I thoroughly enjoy every step of the development process, from tackling challenges to delving deeper into projects. I'm motivated by the desire to push boundaries, solve problems efficiently, and always seek best practices and achieve high-quality results.
@@ -172,7 +172,7 @@ function Main() {
 
                     </div>
 
-                    <div className={`rounded-2xl overflow-hidden transition duration-700 ${showAboutMe ? 'opacity-100 translate-x-0 md:translate-x-0' : 'opacity-0 translate-x-8 md:translate-x-8 pointer-events-none'}`}>
+                    <div className={`rounded-2xl overflow-hidden transition duration-700 ${showAboutMe ? 'opacity-100 md:translate-x-0 translate-y-0' : 'opacity-0 md:translate-x-8 translate-y-8 pointer-events-none'}`}>
                         <picture>
                             <source srcSet="/img/webp/aboutmeimg.webp" type="image/webp" />
                             <img src="/img/aboutmeimg.png" alt="ME" className="hover:scale-110 transition cursor-pointer" />
@@ -229,7 +229,7 @@ function Main() {
                     {projects.map((project, idx) => (
                         <div
                             key={project.title}
-                            className={`transition duration-700 ${showProjects ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
+                            className={`transition duration-700 ${showProjects ? 'opacity-100 md:translate-y-0 translate-y-0' : 'opacity-0 md:translate-y-8 translate-y-8 pointer-events-none'}`}
                             idx={idx}
                         >
                             <ProjectCard
@@ -266,18 +266,20 @@ function Main() {
                 />
                 <div className={`flex flex-col-reverse items-center md:items-start md:flex-row gap-10`}>
 
-                    <form action="" className={`block w-full max-w-96 min-w-72 bg-white p-5 rounded-2xl transition duration-700 ${showContact ? 'opacity-100 translate-x-0 md:translate-x-0' : 'opacity-0 -translate-x-8 md:-translate-x-8 pointer-events-none'}`} onSubmit={validar}>
+                    <form action="" className={`block w-full max-w-96 min-w-72 bg-white p-5 rounded-2xl transition duration-700 ${showContact ? 'opacity-100 md:-translate-x-0 translate-y-0' : 'opacity-0 md:-translate-x-8 translate-y-8 pointer-events-none'}`} onSubmit={validar}>
                         
                         <div className="flex flex-col gap-5">
                             <p className="font-bold text-center text-xl">Contact me</p>
                             <label className="font-semibold" htmlFor="name">Name</label>
-                            <input id="name" name="name" type="text" placeholder="Your Name" className="p-3 rounded-lg bg-black text-white" />
+                            <input id="name" name="name" type="text" placeholder="Your Name" className="p-3 rounded-lg bg-[#E8F0FE] border-2 border-black text-gray-500" />
 
                             <label className="font-semibold" htmlFor="email">Email</label>
-                            <input id="email" name="email" type="email" placeholder="Your Email" className="p-3 rounded-lg bg-black text-white" />
+                            <input id="email" name="email" type="email" placeholder="Your Email" className="p-3 rounded-lg bg-[#E8F0FE] border-2 border-black text-gray-500" />
 
                             <label className="font-semibold" htmlFor="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Your Message" className="p-3 rounded-lg bg-black text-white h-32"></textarea>
+                            <textarea id="message" name="message" placeholder="Your Message" className="p-3 rounded-lg bg-[#E8F0FE] border-2 border-black text-gray-500 h-32"></textarea>
+
+                            <p className="text-[10px] text-gray-500">Remember to check that your email is spelled correctly, this will help me contact you back!</p>
                             <Btn
                                 typeBtn="submit"
                                 root="/svg/mail.svg"
@@ -287,7 +289,7 @@ function Main() {
                         </div>
                     </form>
 
-                    <div className={`flex flex-col gap-5 transition duration-700 ${showContact ? 'opacity-100 translate-x-0 md:translate-x-0' : 'opacity-0 translate-x-8 md:translate-x-8 pointer-events-none'}`}>
+                    <div className={`flex flex-col gap-5 transition duration-700 ${showContact ? 'opacity-100 md:translate-x-0 translate-y-0' : 'opacity-0 md:translate-x-8 translate-y-8 pointer-events-none'}`}>
                         <p className="text-white text-2xl md:text-5xl">Do you have a great idea and <span className="text-3xl md:text-6xl bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">want </span>to make it a reality?</p>
                         <p className="text-white text-2xl md:text-5xl">Let's work <span className="text-3xl md:text-6xl bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">together </span>and build something great!</p>
                         <div id="form-errors" className="mb-2"></div>
@@ -295,11 +297,8 @@ function Main() {
 
 
 
-
                 </div>
             </div>
-
-
         </div>
     );
 }
