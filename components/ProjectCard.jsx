@@ -1,7 +1,17 @@
 function ProjectCard({ mainImg, title, description, link, images = []}) {
+    // Si la imagen es PNG, usar <picture> con WebP
+    const isPng = mainImg && mainImg.endsWith('.png');
+    const webpSrc = isPng ? mainImg.replace('/img/', '/img/webp/').replace('.png', '.webp') : null;
     return (
         <div className="bg-white max-w-[405px] rounded-2xl px-3 flex flex-col mt-5 gap-5 items-center justify-center h-full">
-            <img src={mainImg} alt="mainImg" className="w-[380px] rounded-2xl -mt-6 shadow-xl hover:-translate-y-3 duration-[250ms] transition cursor-pointer hover:border-gray-500 hover:shadow-[0_0_10px_1px_rgba(139,92,246,0.5)]" />
+            {isPng ? (
+                <picture>
+                    <source srcSet={webpSrc} type="image/webp" />
+                    <img src={mainImg} alt="mainImg" className="w-[380px] rounded-2xl -mt-6 shadow-xl hover:-translate-y-3 duration-[250ms] transition cursor-pointer hover:border-gray-500 hover:shadow-[0_0_10px_1px_rgba(139,92,246,0.5)]" />
+                </picture>
+            ) : (
+                <img src={mainImg} alt="mainImg" className="w-[380px] rounded-2xl -mt-6 shadow-xl hover:-translate-y-3 duration-[250ms] transition cursor-pointer hover:border-gray-500 hover:shadow-[0_0_10px_1px_rgba(139,92,246,0.5)]" />
+            )}
             <div className="flex flex-col h-full mb-3 gap-2 justify-between">
 
                 <h4 className="font-bold">{title}</h4>

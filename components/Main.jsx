@@ -53,21 +53,21 @@ function Main() {
 
     const projects = [
         {
-            mainImg: "/img/cloudheaven3.png",
+            mainImg: "/img/cloudheaven3.png", // Usar <picture> en ProjectCard
             title: "Cloud Heaven - Your Personal Cloud",
             description: "CRUD web application that lets you store your best moments in personalized albums, add captions to your best photos, and collect moments!",
             link: "https://github.com/Brian07052024/Cloud-Heaven",
             images: ["/skills/php.svg", "/skills/scss.svg", "/skills/Js.svg"]
         },
         {
-            mainImg: "/img/weathern.png",
+            mainImg: "/img/weathern.png", // Usar <picture> en ProjectCard
             title: "Weather - The Weather in Your Pocket",
             description: "Quickly stay up-to-date with weathern, the web app that uses an API and displays the information you need, check the weather in your city and others around the world!",
             link: "https://weathe-rn.netlify.app/",
             images: ["/skills/html.svg", "/skills/Js.svg", "/skills/tailwind.svg"]
         },
         {
-            mainImg: "/img/pokedexrn.png",
+            mainImg: "/img/pokedexrn.png", // Usar <picture> en ProjectCard
             title: "PokeRN - Your Favorite Pocket Monsters",
             description: "Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!",
             link: "https://pokedex-rn.netlify.app/",
@@ -173,7 +173,10 @@ function Main() {
                     </div>
 
                     <div className={`rounded-2xl overflow-hidden transition duration-700 ${showAboutMe ? 'opacity-100 translate-x-0 md:translate-x-0' : 'opacity-0 translate-x-8 md:translate-x-8 pointer-events-none'}`}>
-                        <img src="/img/aboutmeimg.png" alt="ME" className="hover:scale-110 transition cursor-pointer" />
+                        <picture>
+                            <source srcSet="/img/webp/aboutmeimg.webp" type="image/webp" />
+                            <img src="/img/aboutmeimg.png" alt="ME" className="hover:scale-110 transition cursor-pointer" />
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -206,7 +209,7 @@ function Main() {
                             gridSpan={"lg:col-span-2"}
                         />
                         <ExperienceCard
-                            icon="/img/mern.png"
+                            icon="/img/mern.png" // Usar <picture> en ExperienceCard si es imagen
                             title="MERN Developer"
                             date="May 2025 - Today"
                             description="Handling the MERN stack to build full-stack web applications."

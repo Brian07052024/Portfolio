@@ -54,7 +54,10 @@ function Header() {
                 style={{ pointerEvents: 'auto' }}
             >
                 <div className="flex flex-col gap-2 items-center mx-3 text-center">
-                    <img src="/img/me.png" alt="Avatar" className="rounded-full w-32 h-32 object-cover border-4 border-white shadow-lg" />
+                    <picture>
+                        <source srcSet="/img/webp/me.webp" type="image/webp" />
+                        <img src="/img/me.png" alt="Avatar" className="rounded-full w-32 h-32 object-cover border-4 border-white shadow-lg" />
+                    </picture>
                     <p className="text-white font-bold text-2xl">Brian Orlando Ramirez Nuñez</p>
                     <p className="text-white font-semibold text-lg">Systems administration engineer</p>
                 </div>
@@ -76,11 +79,14 @@ function Header() {
                 <div className="w-7xl flex flex-col md:flex-row justify-between items-center">
                     <div className="mx-3 w-full flex flex-col gap-1 md:flex-row justify-between items-center">
                         <div className="flex gap-3 items-center">
-                            <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
+                            <picture>
+                                <source srcSet="/img/webp/me.webp" type="image/webp" />
+                                <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
+                            </picture>
                             <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
                             <div className="flex flex-col">
                                 <p className="text-white">Brian Ramirez Nuñez</p>
-                                <p className="text-white font-bold text-sm"><span className="bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">FullStack</span> Developer</p>
+                                <p className="text-white font-bold text-sm"><span className="text-enfasis">FullStack</span> Developer</p>
                             </div>
                         </div>
                         <nav>
