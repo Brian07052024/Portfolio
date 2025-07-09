@@ -72,6 +72,13 @@ function Main() {
             description: "Re-explore the list of your favorite pocket monsters now better than ever with an attractive visual interface and customizable search in this web app that uses the PokeAPI!",
             link: "https://pokedex-rn.netlify.app/",
             images: ["/skills/html.svg", "/skills/Js.svg", "/skills/tailwind.svg"]
+        },
+        {
+            mainImg: "/img/uilibrary.jpg", // Usar <picture> en ProjectCard
+            title: "UI Collection - Library of UI Components", 
+            description: "Coming soon! A collection of reusable UI components for your projects, designed to speed up your development process. Mern aplication with a modern and responsive design.",
+            link: "#",
+            images: ["/skills/mongo.svg", "/skills/express.svg", "/skills/react.svg", "/skills/node.svg"]
         }
     ]
 
@@ -156,8 +163,8 @@ function Main() {
                     h2Text={"Who I Am?"}
                 />
 
-                <div className="flex flex-col md:flex-row gap-5" ref={aboutMeRef}>
-                    <div className={`transition duration-700 ${showAboutMe ? 'opacity-100 md:-translate-x-0 translate-y-0' : 'opacity-0 md:-translate-x-8 translate-y-8 pointer-events-none'}`}>
+                <div className="flex flex-col md:flex-row gap-5" ref={aboutMeRef}> 
+                    <div className={`transition duration-700 ${showAboutMe ? 'opacity-100 lg:-translate-x-0 translate-y-0' : 'opacity-0 lg:-translate-x-8 translate-y-8 pointer-events-none'}`}>
                         <div className="text-white flex flex-col gap-3 mb-5 text-pretty">
                             <p><span className="text-enfasis text-4xl">Hello</span>, my name is Brian Orlando Ramírez Núñez. I'm a Systems Engineering student and I love programming. </p>
                             <p>I thoroughly enjoy every step of the development process, from tackling challenges to delving deeper into projects. I'm motivated by the desire to push boundaries, solve problems efficiently, and always seek best practices and achieve high-quality results.
@@ -172,7 +179,7 @@ function Main() {
 
                     </div>
 
-                    <div className={`rounded-2xl overflow-hidden transition duration-700 ${showAboutMe ? 'opacity-100 md:translate-x-0 translate-y-0' : 'opacity-0 md:translate-x-8 translate-y-8 pointer-events-none'}`}>
+                    <div className={`rounded-2xl overflow-hidden transition duration-700 ${showAboutMe ? 'opacity-100 lg:translate-x-0 translate-y-0' : 'opacity-0 lg:translate-x-8 translate-y-8 pointer-events-none'}`}>
                         <picture>
                             <source srcSet="/img/webp/aboutmeimg.webp" type="image/webp" />
                             <img src="/img/aboutmeimg.png" alt="ME" className="hover:scale-110 transition cursor-pointer" />
@@ -225,7 +232,7 @@ function Main() {
                     h2Text={"My Projects"}
                 />
 
-                <div className={`grid mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-10`}>
+                <div className={`grid mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-14`}>
                     {projects.map((project, idx) => (
                         <div
                             key={project.title}
@@ -266,7 +273,7 @@ function Main() {
                 />
                 <div className={`flex flex-col-reverse items-center md:items-start md:flex-row gap-10`}>
 
-                    <form action="" className={`block w-full max-w-96 min-w-72 bg-white p-5 rounded-2xl transition duration-700 ${showContact ? 'opacity-100 md:-translate-x-0 translate-y-0' : 'opacity-0 md:-translate-x-8 translate-y-8 pointer-events-none'}`} onSubmit={validar}>
+                    <form action="" className={`block w-full max-w-96 min-w-72 bg-white p-5 rounded-2xl transition duration-700 ${showContact ? 'opacity-100 lg:-translate-x-0 translate-y-0' : 'opacity-0 lg:-translate-x-8 translate-y-8 pointer-events-none'}`} onSubmit={validar}>
                         
                         <div className="flex flex-col gap-5">
                             <p className="font-bold text-center text-xl">Contact me</p>
@@ -289,7 +296,7 @@ function Main() {
                         </div>
                     </form>
 
-                    <div className={`flex flex-col gap-5 transition duration-700 ${showContact ? 'opacity-100 md:translate-x-0 translate-y-0' : 'opacity-0 md:translate-x-8 translate-y-8 pointer-events-none'}`}>
+                    <div className={`flex flex-col gap-5 transition duration-700 ${showContact ? 'opacity-100 lg:translate-x-0 translate-y-0' : 'opacity-0 lg:translate-x-8 translate-y-8 pointer-events-none'}`}>
                         <p className="text-white text-2xl md:text-5xl">Do you have a great idea and <span className="text-3xl md:text-6xl bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">want </span>to make it a reality?</p>
                         <p className="text-white text-2xl md:text-5xl">Let's work <span className="text-3xl md:text-6xl bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent">together </span>and build something great!</p>
                         <div id="form-errors" className="mb-2"></div>

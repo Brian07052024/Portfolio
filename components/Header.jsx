@@ -74,33 +74,31 @@ function Header() {
             {renderAvatar()}
             <header
                 id="header"
-                className={`max-w-7xl mx-auto backdrop-blur-md bg-transparent flex justify-center py-3 items-center fixed top-0 right-0 left-0 z-50 transition-transform duration-300  ${showHeader ? 'translate-y-0' : '-translate-y-full '}`}
+                className={`w-full backdrop-blur-md bg-transparent flex justify-center py-1 items-center fixed top-0 right-0 left-0 z-50 transition-transform duration-300 ${showHeader ? 'translate-y-0' : '-translate-y-full '}`}
             >
-                <div className="mx-3 flex flex-col md:flex-row justify-between items-center w-full">
-                    <div className="mx-auto w-full flex flex-col gap-1 md:flex-row justify-between items-center">
-                        <div className="flex gap-3 items-center">
-                            <picture>
-                                <source srcSet="/img/webp/me.webp" type="image/webp" />
-                                <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
-                            </picture>
-                            <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
-                            <div className="flex flex-col">
-                                <p className="text-white">Brian Ramirez Nuñez</p>
-                                <p className="text-white font-bold text-sm"><span className="text-enfasis">FullStack</span> Developer</p>
-                            </div>
+                <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-3">
+                    <div className="flex gap-3 items-center">
+                        <picture>
+                            <source srcSet="/img/webp/me.webp" type="image/webp" />
+                            <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
+                        </picture>
+                        <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
+                        <div className="flex flex-col">
+                            <p className="text-white">Brian Ramirez Nuñez</p>
+                            <p className="text-white font-bold text-sm"><span className="text-enfasis">FullStack</span> Developer</p>
                         </div>
-                        <nav>
-                            <ul>
-                                <li className="flex gap-3 text-center">
-                                    <Link enlace="#about-me" text="About" />
-                                    <Link enlace="#experience" text="Experience" />
-                                    <Link enlace="#projects" text="Projects" />
-                                    <Link enlace="#skills" text="Skills" />
-                                    <Link enlace="#contact" text="Contact" />
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
+                    <nav>
+                        <ul>
+                            <li className="flex gap-3 text-center">
+                                <Link enlace="#about-me" text="About" />
+                                <Link enlace="#experience" text="Experience" />
+                                <Link enlace="#projects" text="Projects" />
+                                <Link enlace="#skills" text="Skills" />
+                                <Link enlace="#contact" text="Contact" />
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </header>
         </>
