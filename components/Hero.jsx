@@ -31,8 +31,8 @@ function Hero() {
 
                 <div className='flex flex-col gap-10 xl:flex-row justify-between w-full'>
 
-                    <div className='text-white font-bold text-2xl md:text-5xl flex flex-col gap-3 items-center xl:items-start xl:justify-center w-full relative z-40'>
-                        <div>
+                    <div className='text-white font-bold text-xl md:text-5xl flex flex-col gap-3 items-center xl:items-start xl:justify-center w-full relative z-40'>
+                        <div className='text-center xl:text-left'>
                             <h1><span className='bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent'>FullStack </span>Developer<span className='text-xs bg-gradient-to-b from-titleTop to-titleBottom bg-clip-text text-transparent'> MERN</span></h1>
 
                             <h1>Brian Ramirez Nuñez</h1>

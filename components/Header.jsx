@@ -76,7 +76,7 @@ function Header() {
                 id="header"
                 className={`w-full backdrop-blur-md bg-transparent flex justify-center py-1 items-center fixed top-0 right-0 left-0 z-50 transition-transform duration-300 ${showHeader ? 'translate-y-0' : '-translate-y-full '}`}
             >
-                <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-3">
+                <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-3 gap-2 xl:gap-0">
                     <div className="flex gap-3 items-center">
                         <picture>
                             <source srcSet="/img/webp/me.webp" type="image/webp" />
@@ -91,7 +91,7 @@ function Header() {
                     <nav>
                         <ul>
                             <li className="flex gap-3 text-center">
-                                <Link enlace="#about-me" text="About" />
+                                <Link enlace="#about-me" text="About me" />
                                 <Link enlace="#experience" text="Experience" />
                                 <Link enlace="#projects" text="Projects" />
                                 <Link enlace="#skills" text="Skills" />
