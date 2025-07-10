@@ -47,7 +47,7 @@ function Hero() {
                             <Btn
                                 root="/svg/linkedin.svg"
                                 text="LinkedIn"
-                                link="https://www.linkedin.com/in/brian-ramirez-nu%C3%B1ez-544993341/"
+                                link="https://www.linkedin.com/in/brian-orlando-ramirez-nu%C3%B1ez-544993341/"
                             />
                             <Btn
                                 root="/skills/github.svg"
