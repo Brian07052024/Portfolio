@@ -67,42 +67,45 @@ function Header() {
         );
     }
 
+    // Altura del header (ajusta si cambias el padding/tamaño)
+    const HEADER_HEIGHT = 60;
+
     return (
         <>
             {renderAvatar()}
-            <header
-                id="header"
-                className={`absolute w-full backdrop-blur-md bg-transparent flex justify-center py-1 items-center top-0 right-0 left-0 z-50 transition-transform duration-300 ${showHeader ? 'animate-fade fixed' : 'animate-fade-down'}`}
-            >
-                <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-3 gap-2 xl:gap-0">
-                    <div className="flex gap-3 items-center">
-                        <picture>
-                            <source srcSet="/img/webp/me.webp" type="image/webp" />
-                            <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
-                        </picture>
-                        <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
-                        <div className="flex flex-col">
-                            <p className="text-white">Brian Ramirez Nuñez</p>
-                            <p className="text-white font-bold text-sm"><span className="text-enfasis">FullStack</span> Developer</p>
+            <div style={{ height: HEADER_HEIGHT }}>
+                <header
+                    id="header"
+                    className={`fixed w-full flex justify-center py-1 items-center top-0 right-0 left-0 z-50 transition-all duration-300
+                        ${showHeader ? 'backdrop-blur-md bg-transparent animate-fade' : ''}`}
+                    style={{ height: HEADER_HEIGHT }}
+                >
+                    <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-3 gap-2 xl:gap-0">
+                        <div className="flex gap-3 items-center">
+                            <picture>
+                                <source srcSet="/img/webp/me.webp" type="image/webp" />
+                                <img id="avatar" src="/img/me.png" alt="Avatar" className="h-12 rounded-full shadow-avatar shadow-white/25 cursor-pointer" onClick={handleAvatarClick} />
+                            </picture>
+                            <div className="block w-[1px] h-10 bg-white/20 rounded-2xl"></div>
+                            <div className="flex flex-col">
+                                <p className="text-white">Brian Ramirez Nuñez</p>
+                                <p className="text-white font-bold text-sm"><span className="text-enfasis">FullStack</span> Developer</p>
+                            </div>
                         </div>
+                        <nav>
+                            <ul>
+                                <li className="flex gap-3 text-center">
+                                    <Link enlace="#about-me" text="About me" />
+                                    <Link enlace="#experience" text="Experience" />
+                                    <Link enlace="#projects" text="Projects" />
+                                    <Link enlace="#skills" text="Skills" />
+                                    <Link enlace="#contact" text="Contact" />
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
-                    <nav>
-                        <ul>
-                            <li className="flex gap-3 text-center">
-                                <Link enlace="#about-me" text="About me" />
-                                <Link enlace="#experience" text="Experience" />
-                                <Link enlace="#projects" text="Projects" />
-                                <Link enlace="#skills" text="Skills" />
-                                <Link enlace="#contact" text="Contact" />
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-            {/* Espaciador para evitar salto al hacer fixed el header */}
-            {showHeader && (
-                <div style={{ height: '79.99px' }} aria-hidden="true"></div>
-            )}
+                </header>
+            </div>
         </>
     );
 }
