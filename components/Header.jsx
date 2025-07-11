@@ -99,6 +99,10 @@ function Header() {
                     </nav>
                 </div>
             </header>
+            {/* Espaciador para evitar salto al hacer fixed el header */}
+            {showHeader && (
+                <div style={{ height: '79.99px' }} aria-hidden="true"></div>
+            )}
         </>
     );
 }
