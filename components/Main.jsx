@@ -156,7 +156,7 @@ function Main() {
     // Main component rendering
 
     return (
-        <div className="max-w-7xl mx-auto mt-20 pb-20 pt-16 md:pt-20" >
+        <div id="main" className="max-w-7xl mx-auto mt-20 pb-20 pt-16 md:pt-20" >
             <div className="flex flex-col gap-5 mx-3" id="about-me" >
                 <TitleSection
                     spanText={"About Me"}

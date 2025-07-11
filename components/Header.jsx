@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "./Link";
 
 
@@ -7,20 +7,18 @@ function Header() {
     const [isAvatarClosing, setIsAvatarClosing] = useState(false);
 
     // Estado para mostrar/ocultar header según scroll
-    const [showHeader, setShowHeader] = useState(true);
-    const lastScrollY = useRef(0);
+    const [showHeader, setShowHeader] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
-            if (currentScrollY < 50) {
-                setShowHeader(true);
-            } else if (currentScrollY > lastScrollY.current) {
-                setShowHeader(false); // Bajando
+            const bottomHero = document.querySelector("#hero").getBoundingClientRect().bottom;
+
+            if (currentScrollY > bottomHero) {
+                setShowHeader(true)
             } else {
-                setShowHeader(true); // Subiendo
+                setShowHeader(false)
             }
-            lastScrollY.current = currentScrollY;
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -74,7 +72,7 @@ function Header() {
             {renderAvatar()}
             <header
                 id="header"
-                className={`w-full backdrop-blur-md bg-transparent flex justify-center py-1 items-center fixed top-0 right-0 left-0 z-50 transition-transform duration-300 ${showHeader ? 'translate-y-0' : '-translate-y-full '}`}
+                className={`absolute w-full backdrop-blur-md bg-transparent flex justify-center py-1 items-center top-0 right-0 left-0 z-50 transition-transform duration-300 ${showHeader ? 'animate-fade fixed' : 'animate-fade-down'}`}
             >
                 <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-3 gap-2 xl:gap-0">
                     <div className="flex gap-3 items-center">
