@@ -72,7 +72,7 @@ function Header() {
             {renderAvatar()}
             <header
                 id="header"
-                className={`absolute w-full backdrop-blur-md bg-transparent flex justify-center py-1 items-center top-0 right-0 left-0 z-50 transition-transform duration-300 ${showHeader ? 'animate-fade fixed' : ''}`}
+                className={`absolute w-full backdrop-blur-md bg-transparent flex justify-center py-1 items-center top-0 right-0 left-0 z-50 transition-transform duration-300 ${showHeader ? 'animate-fade fixed' : 'animate-fade-down'}`}
             >
                 <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-3 gap-2 xl:gap-0">
                     <div className="flex gap-3 items-center">
