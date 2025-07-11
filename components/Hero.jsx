@@ -25,7 +25,7 @@ function Hero() {
     }, []);
 
     return (
-        <div className='min-h-screen bg-gradient-to-b from-[#101010] via-[#1A0824] to-[#2d0144] flex justify-center items-center relative' style={{ minHeight: '100dvh' }} id='hero'>
+        <div className='h-lvh bg-gradient-to-b from-[#101010] via-[#1A0824] to-[#2d0144] flex justify-center items-center relative' id='hero'>
 
             <div className='max-w-7xl w-full mx-3'>
 
